@@ -1,1 +1,8 @@
 <?php
+
+/**
+ * Global Configuration
+ */
+$config = [
+
+];
