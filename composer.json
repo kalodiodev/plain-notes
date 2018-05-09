@@ -1,7 +1,13 @@
 {
+  "name": "kalodiodev/plain-notes",
+  "description": "A very simple note taking application",
+  "license": "MIT",
   "autoload": {
     "classmap": [
       "./"
+    ],
+    "files": [
+      "./core/helpers/navigation.php"
     ]
   }
 }

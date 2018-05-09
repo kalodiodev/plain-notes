@@ -3,7 +3,9 @@
 /**
  * Global Configuration
  */
-$config = [
+return [
+    'url_prefix' => '',
+
     'database_name' => '',
     'database_username' => '',
     'database_password' => '',
