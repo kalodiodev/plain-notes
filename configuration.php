@@ -7,7 +7,7 @@ return [
     'url_prefix' => '',
 
     'database_name' => '',
-    'database_username' => '',
-    'database_password' => '',
+    'database_username' => 'root',
+    'database_password' => 'secret',
     'database_host' => 'localhost'
 ];

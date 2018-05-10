@@ -12,48 +12,39 @@ use PDOException;
  */
 class Database {
 
-    private $connection;
+    private static $instance = null;
 
-    private $username;
-    private $password;
-    private $database;
-    private $host;
 
     /**
      * Database constructor.
      */
-    public function __construct()
+    private function __construct()
     {
-        global $config;
 
-        $this->database = $config['database_name'];
-        $this->username = $config['database_username'];
-        $this->password = $config['database_password'];
-        $this->host = $config['database_host'];
     }
 
     /**
-     * Connect to databse
+     * Get database instance
      */
-    public function connect()
-    {
-        $dsn = 'mysql:dbname=' . $this->database . ';host=' . $this->host;
+    public static function getInstance() {
 
-        try {
-            $this->connection = new PDO($dsn, $this->username, $this->password);
-        } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
+        if (!isset(self::$instance)) {
+            global $config;
+
+            $database = $config['database_name'];
+            $username = $config['database_username'];
+            $password = $config['database_password'];
+            $host = $config['database_host'];
+
+            $dsn = 'mysql:dbname=' . $database . ';host=' . $host;
+            $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+
+            try {
+                self::$instance = new PDO($dsn, $username, $password, $pdo_options);
+            } catch (PDOException $e) {
+                echo 'Connection failed: ' . $e->getMessage();
+            }
         }
-
-        return $this->connection;
+        return self::$instance;
     }
-    
-    /**
-     * Disconnect database
-     */
-    public function disconnect()
-    {
-        $this->connection = null;
-    }
-
 }
