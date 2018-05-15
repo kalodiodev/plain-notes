@@ -9,5 +9,9 @@
     "files": [
       "./core/helpers/navigation.php"
     ]
+  },
+  "require-dev": {
+    "phpunit/php-invoker": "^2.0",
+    "phpunit/phpunit": "^6.5"
   }
 }
