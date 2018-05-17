@@ -109,6 +109,22 @@ class Validator {
     }
 
     /**
+     * Validate field value is an email
+     *
+     * @param $field
+     * @param $value
+     * @param $message
+     */
+    protected function email($field, $value, $message)
+    {
+        if($value == true) {
+            $field_error = EmailValidator::validate($this->model->{$field}, $message);
+
+            $this->pushError($field, $field_error);
+        }
+    }
+
+    /**
      * Get errors
      *
      * @return array
