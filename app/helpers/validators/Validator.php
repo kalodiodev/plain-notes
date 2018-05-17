@@ -89,6 +89,26 @@ class Validator {
     }
 
     /**
+     * Validate field's value matched given value
+     *
+     * if given value corresponds to {Model} property then this property would be compared
+     *
+     * @param $field
+     * @param $value
+     * @param $message
+     */
+    protected function match($field, $value, $message)
+    {
+        if(isset($this->model->{$value})) {
+            $value = $this->model->{$value};
+        }
+
+        $field_error = MatchConfirmValidator::validate($this->model->{$field}, $value, $message);
+
+        $this->pushError($field, $field_error);
+    }
+
+    /**
      * Get errors
      *
      * @return array
