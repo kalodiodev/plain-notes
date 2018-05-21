@@ -34,7 +34,7 @@ class UserRepositoryImpl implements UserRepository {
         $stmt = $this->db
             ->prepare(
                 "INSERT INTO " . $this->table .
-                " ( 'first_name', 'last_name', 'email', 'password' ) " .
+                " ( `first_name`, `last_name`, `email`, `password` ) " .
                 "VALUES (:firstname , :lastname , :email, :password)");
 
         $result = $stmt->execute([
