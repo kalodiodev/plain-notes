@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use PDO;
 use App\Model\User;
+use App\Core\Helper\Encrypt;
 
 class UserRepositoryImpl implements UserRepository {
 
@@ -41,7 +42,7 @@ class UserRepositoryImpl implements UserRepository {
             ':firstname' => $user->firstName,
             ':lastname' => $user->lastName,
             ':email' => $user->email,
-            ':password' => $user->password
+            ':password' => Encrypt::encrypt($user->password)
         ]);
 
         if($result) {
