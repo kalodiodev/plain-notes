@@ -21,6 +21,8 @@ if(isset($_SESSION['old_user'])) {
 }
 ?>
 
+<?php require 'partial/page_error.php'; ?>
+
 <form action="<?php echo route('register'); ?>" method="post">
     <div>
         <label for="firstName">First Name</label>
