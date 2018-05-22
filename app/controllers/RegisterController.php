@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use PDOException;
 use App\Request\UserRequest;
+use App\Repository\UserRepositoryImpl;
 
 /**
  * User Register Controller Class
@@ -10,6 +12,14 @@ use App\Request\UserRequest;
  * @package App\Controllers
  */
 class RegisterController {
+
+    private $userRepository;
+
+    public function __construct()
+    {
+        global $db;
+        $this->userRepository = new UserRepositoryImpl($db);
+    }
 
     /**
      * Register page
@@ -35,7 +45,42 @@ class RegisterController {
             return redirect('register');
         }
 
+        if($this->storeUser($user) == null) {
+            return redirect('register');
+        }
+
         return redirect('');
+    }
+
+    /**
+     * @param PDOException $ex
+     *
+     * @return string error message
+     */
+    protected function exception_message(PDOException $ex)
+    {
+        if ($ex->getCode() == 23000) {
+            return "User already exists!";
+        }
+
+        return "Failed to register! Something went wrong!";
+    }
+
+    /**
+     * Store user to database
+     *
+     * @param $user
+     * @return null|string|void
+     */
+    protected function storeUser($user)
+    {
+        try {
+            $id = $this->userRepository->save($user);
+        } catch (PDOException $ex) {
+            $id = null;
+            error_message($this->exception_message($ex));
+        }
+        return $id;
     }
 
 }
