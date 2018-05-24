@@ -6,21 +6,21 @@ $title = "Welcome - Plain Notes";
 require 'partial/head.php';
 ?>
 
-<body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <!-- Header / Navigation Bar -->
-        <?php require 'partial/navbar.php'; ?>
+<body>
+    <!-- Header / Navigation Bar -->
+    <?php require 'partial/navbar.php'; ?>
 
-        <main role="main" class="inner cover">
-            <h1 class="cover-heading">Plain Notes</h1>
-            <p class="lead">Plain Notes is very simple web application for keeping tasks and notes.</p>
-            <p class="lead">
-                <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-            </p>
-        </main>
+    <main role="main">
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Plain Notes</h1>
+                <p>Plain Notes is very simple web application for keeping tasks and notes.</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            </div>
+        </div>
+    </main>
 
-        <?php require 'partial/footer.php'; ?>
-    </div>
+    <?php require 'partial/footer.php'; ?>
 </body>
 
 </html>

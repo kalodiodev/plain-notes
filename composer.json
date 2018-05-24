@@ -8,7 +8,8 @@
     ],
     "files": [
       "./core/helpers/navigation.php",
-      "./core/helpers/message.php"
+      "./core/helpers/message.php",
+      "./core/helpers/form-error.php"
     ]
   },
   "require-dev": {

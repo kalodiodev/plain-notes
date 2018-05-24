@@ -1,5 +1,5 @@
-<footer class="mastfoot mt-auto">
-    <div class="inner">
-        <p>Developed by KalodioDev.</p>
+<footer>
+    <div class="container">
+        <span class="text-muted">Developed by KalodioDev.</span>
     </div>
 </footer>

@@ -1,5 +1,5 @@
-<?php if(! empty($_SESSION['errors'][$field]) && (sizeof($_SESSION['errors'][$field])) > 0): ?>
-    <div class="alert alert-danger">
+<?php if(field_has_error($field)): ?>
+    <div class="invalid-feedback">
         <ul>
             <?php foreach ($_SESSION['errors'][$field] as $error) : ?>
                 <li><?php echo $error; ?></li>
