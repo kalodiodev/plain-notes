@@ -34,6 +34,14 @@ interface UserRepository {
     function get($id);
 
     /**
+     * Get user by Email
+     *
+     * @param $email
+     * @return mixed
+     */
+    function getByEmail($email);
+
+    /**
      * Update user
      *
      * @param User $user
