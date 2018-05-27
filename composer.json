@@ -9,7 +9,8 @@
     "files": [
       "./core/helpers/navigation.php",
       "./core/helpers/message.php",
-      "./core/helpers/form-error.php"
+      "./core/helpers/form-error.php",
+      "./core/helpers/authentication.php"
     ]
   },
   "require-dev": {
