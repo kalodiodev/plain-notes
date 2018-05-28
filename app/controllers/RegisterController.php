@@ -39,7 +39,7 @@ class RegisterController {
 
         if($request->hasErrors())
         {
-            $_SESSION['errors'] = $request->errors();
+            set_form_errors($request->errors());
             $_SESSION['old_user'] = serialize($user);
 
             return redirect('register');

@@ -95,7 +95,7 @@
              * Clear Session
              */
             unset($_SESSION['old_user']);
-            unset($_SESSION['errors']);
+            clear_form_errors();
         ?>
 
     </div>
