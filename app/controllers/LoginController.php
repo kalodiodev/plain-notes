@@ -55,4 +55,14 @@ class LoginController {
 
         return redirect('login');
     }
+
+    /**
+     * Perform User Logout
+     */
+    public function logout()
+    {
+        signOut();
+
+        return redirect('');
+    }
 }
