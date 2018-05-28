@@ -28,11 +28,14 @@ class Validator {
     /**
      * Perform validation
      *
+     * @param null $validation_rules
      * @return $this
      */
-    public function validate()
+    public function validate($validation_rules = null)
     {
-        foreach ($this->model->validate_fields as $field => $rules)
+        $validation_rules = $validation_rules != null ? $validation_rules : $this->model->validate_fields;
+
+        foreach ($validation_rules as $field => $rules)
         {
             foreach ($rules as $rule => $properties)
             {
