@@ -41,6 +41,15 @@ class LoginController {
         $request = new UserLoginRequest();
         $requestedUser = $request->input()->validate()->get();
 
+        // Check for validation errors
+        if($request->hasErrors())
+        {
+            set_form_errors($request->errors());
+
+            return redirect('login');
+        }
+
+        // Verify and Authenticate user
         if(($requestedUser instanceof User) && ($user = $this->usersRepository->getByEmail($requestedUser->email)))
         {
             if(Encrypt::verify($requestedUser->password, $user->password)) {

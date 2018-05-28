@@ -3,6 +3,7 @@
 namespace App\Request;
 
 use App\Model\User;
+use App\Helper\Validator;
 
 /**
  * Class User Login Request
@@ -33,6 +34,27 @@ class UserLoginRequest extends ModelRequest {
      */
     public function validate()
     {
+        $validation_rules = [
+            'email' => [
+                'required' => [
+                    'value' => true,
+                    'message' => "Email is required."
+                ],
+                'email' => [
+                    'value' => true,
+                    'message' => "Field must be an email."
+                ]
+            ],
+            'password' => [
+                'required' => [
+                    'value' => true,
+                    'message' => "Password is required."
+                ]
+            ]
+        ];
+
+        $this->errors = (new Validator($this->model))->validate($validation_rules)->getErrors();
+
         return $this;
     }
 }

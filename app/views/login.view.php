@@ -52,6 +52,13 @@ require 'partial/head.php';
 require 'partial/footer.php';
 ?>
 
+<?php
+/*
+ * Clear Session
+ */
+clear_form_errors()
+?>
+
 </body>
 
 </html>
