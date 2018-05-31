@@ -54,7 +54,7 @@ class LoginController {
         {
             if(Encrypt::verify($requestedUser->password, $user->password)) {
 
-                authenticate($requestedUser);
+                authenticate($user);
 
                 return redirect('');
             }
