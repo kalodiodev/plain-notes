@@ -66,6 +66,7 @@ class User extends Model implements Serializable {
         ]
     ];
 
+    public $id;
     public $firstName;
     public $lastName;
     public $email;
@@ -80,6 +81,7 @@ class User extends Model implements Serializable {
     public function serialize()
     {
         return serialize([
+            'id' => $this->id,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'email' => $this->email
@@ -95,6 +97,7 @@ class User extends Model implements Serializable {
     {
         $data = unserialize($serialized);
 
+        $this->id = $data['id'];
         $this->firstName = $data['firstName'];
         $this->lastName = $data['lastName'];
         $this->email = $data['email'];
