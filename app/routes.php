@@ -6,3 +6,4 @@ $router->post($config['url_prefix'] . 'register', 'RegisterController@store');
 $router->get($config['url_prefix'] . 'login', 'LoginController@index');
 $router->post($config['url_prefix'] . 'login', 'LoginController@login');
 $router->get($config['url_prefix'] . 'logout', 'LoginController@logout');
+$router->get($config['url_prefix'] . 'notes', 'NotesController@index');
