@@ -69,7 +69,7 @@ class NotesController {
             set_form_errors($request->errors());
             $_SESSION['old_note'] = serialize($note);
 
-            return redirect(route('notes/create'));
+            return redirect('notes/create');
         }
 
         try{
