@@ -30,6 +30,10 @@ class LoginController {
      */
     public function index()
     {
+        if(isAuthenticated()) {
+            redirect("");
+        }
+        
         return view('login');
     }
 
