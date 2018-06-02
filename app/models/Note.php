@@ -20,7 +20,36 @@ class Note extends Model implements Serializable {
     public $user_id;
     public $created_on;
 
-    public $validate_fields = [];
+    public $validate_fields = [
+        'title' => [
+            'required' => [
+                'value' => true,
+                'message' => "Title is required"
+            ],
+            'min' => [
+                'value' => 3,
+                'message' => "Title must be at least 3 characters long"
+            ],
+            'max' => [
+                'value' => 60,
+                'message' => "Title must be less or equal to 60 characters long"
+            ]
+        ],
+        'description' => [
+            'required' => [
+                'value' => true,
+                'message' => "Description is required"
+            ],
+            'min' => [
+                'value' => 3,
+                'message' => "Description must be at least 3 characters long"
+            ],
+            'max' => [
+                'value' => 180,
+                'message' => "Description must be less or equal to 180 characters long"
+            ]
+        ]
+    ];
 
 
     /**
