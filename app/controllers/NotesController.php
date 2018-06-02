@@ -13,6 +13,8 @@ use App\Repository\NoteRepositoryImpl;
  */
 class NotesController {
 
+    use AuthRedirection;
+
     private $notesRepository;
 
     /**
@@ -77,16 +79,6 @@ class NotesController {
         }
 
         return redirect('notes');
-    }
-
-    protected function require_auth()
-    {
-        if(! isAuthenticated())
-        {
-            return redirect('login');
-        }
-
-        return null;
     }
 
     /**
