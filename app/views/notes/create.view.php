@@ -57,7 +57,7 @@ require __DIR__ . '/../partial/head.php';
         <div class="form-row">
             <div class="col-md-12 mb-3">
                 <label for="details">Details</label>
-                <textarea class="form-control <?php echo field_has_error("title") ? "is-invalid": ''; ?>"
+                <textarea class="form-control <?php echo field_has_error("details") ? "is-invalid": ''; ?>"
                           name="details"
                 ><?php echo $old->details; ?></textarea>
                 <?php
