@@ -6,22 +6,24 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item <?php echo $_SERVER['REQUEST_URI'] === route('') ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?php echo route(''); ?>">Home <span class="sr-only">(current)</span></a>
             </li>
-            
             <?php if(! isAuthenticated()): ?>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+            <li class="nav-item <?php echo $_SERVER['REQUEST_URI'] === route('login') ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?php echo route('login'); ?>">Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
+            <li class="nav-item <?php echo $_SERVER['REQUEST_URI'] === route('register') ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?php echo route('register'); ?>">Register</a>
             </li>
             <?php endif; ?>
 
             <?php if(isAuthenticated()): ?>
+            <li class="nav-item <?php echo $_SERVER['REQUEST_URI'] === route('notes') ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?php echo route('notes'); ?>">Notes</a>
+            </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link" href="<?php echo route('logout'); ?>">Logout</a>
             </li>
             <?php endif; ?>
         </ul>

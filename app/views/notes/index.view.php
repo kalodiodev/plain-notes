@@ -12,6 +12,10 @@
         <?php require __DIR__ . '/../partial/navbar.php'; ?>
 
         <h1>Notes</h1>
+        <hr>
+
+        <!-- Error Messages -->
+        <?php require __DIR__ . '/../partial/page_error.php'; ?>
 
         <table class="table">
             <thead>
@@ -36,10 +40,16 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <hr>
+        <a class="btn btn-primary" href="/notes/create">Add New</a>
     </div>
 
     <?php require __DIR__ . '/../partial/footer.php'; ?>
 
+    <?php
+    /*
+     * Clear Session
+     */
+    clear_form_errors();
+    ?>
 </body>
 </html>
