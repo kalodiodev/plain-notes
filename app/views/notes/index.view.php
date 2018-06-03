@@ -33,8 +33,8 @@
                     <td><?php echo $note->description; ?></td>
                     <td><?php echo $note->exp_date; ?></td>
                     <td>
-                        <a class="btn btn-warning btn-sm" href="/notes?edit=<?php echo $note->id; ?>">Edit</a>
-                        <a class="btn btn-danger btn-sm" href="/notes?delete=<?php echo $note->id; ?>">Delete</a>
+                        <a class="btn btn-warning btn-sm" href="/notes/edit?id=<?php echo $note->id; ?>">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="/notes/delete?id=<?php echo $note->id; ?>">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

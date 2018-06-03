@@ -9,3 +9,4 @@ $router->get($config['url_prefix'] . 'logout', 'LoginController@logout');
 $router->get($config['url_prefix'] . 'notes', 'NotesController@index');
 $router->get($config['url_prefix'] . 'notes/create', 'NotesController@create');
 $router->post($config['url_prefix'] . 'notes', 'NotesController@store');
+$router->get($config['url_prefix'] . 'notes/delete', 'NotesController@destroy');

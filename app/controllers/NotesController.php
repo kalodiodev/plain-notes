@@ -82,6 +82,20 @@ class NotesController {
     }
 
     /**
+     * Delete Note
+     */
+    public function destroy()
+    {
+        $this->require_auth();
+
+        if(isset($_GET['id'])) {
+            $this->notesRepository->delete($_GET['id']);
+        }
+
+        return redirect('notes');
+    }
+
+    /**
      * @param PDOException $ex
      *
      * @return string error message

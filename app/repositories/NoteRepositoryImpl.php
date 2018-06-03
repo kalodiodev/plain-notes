@@ -70,8 +70,16 @@ class NoteRepositoryImpl implements NoteRepository
         // TODO: Implement update() method.
     }
 
+    /**
+     * Delete Note
+     */
     function delete($id)
     {
-        // TODO: Implement delete() method.
+        $stmt = $this->db->prepare(
+                "DELETE FROM " . $this->table . " WHERE `id` = :id");
+
+        $stmt->execute([
+            ':id' => $id
+        ]);
     }
 }
