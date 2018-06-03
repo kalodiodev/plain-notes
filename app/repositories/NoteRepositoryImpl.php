@@ -37,6 +37,24 @@ class NoteRepositoryImpl implements NoteRepository
     }
 
     /**
+     * Get note by id
+     *
+     * @param $id
+     * @param User $user
+     * @return mixed
+     */
+    function find($id, User $user)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM " . $this->table . " WHERE `user_id` = :user_id AND `id` = :id");
+        $stmt->execute([
+            'user_id' => $user->id,
+            'id' => $id
+        ]);
+
+        return $stmt->fetchObject(Note::class);
+    }
+
+    /**
      * Add note
      *
      * @param Note $note
@@ -65,13 +83,35 @@ class NoteRepositoryImpl implements NoteRepository
         return null;
     }
 
-    function update(Note $note)
+    /**
+     * Update Note
+     *
+     * @param Note $note
+     * @param User $user
+     */
+    function update(Note $note, User $user)
     {
-        // TODO: Implement update() method.
+        $stmt = $this->db
+            ->prepare(
+                "UPDATE " . $this->table . " SET " .
+                "`title` = :title, `description` = :description, `details` = :details, `exp_date` = :exp_date " .
+                "WHERE `id` = :id AND `user_id` = :user_id");
+
+        $stmt->execute([
+            ':id' => $note->id,
+            ':title' => $note->title,
+            ':description' => $note->description,
+            ':details' => $note->details,
+            ':exp_date' => $note->exp_date,
+            ':user_id' => $note->user_id
+        ]);
     }
 
     /**
      * Delete Note
+     *
+     * @param $id
+     * @return mixed|void
      */
     function delete($id)
     {

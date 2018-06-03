@@ -21,6 +21,15 @@ interface NoteRepository {
     function all(User $user);
 
     /**
+     * Get note by id
+     *
+     * @param $id
+     * @param User $user
+     * @return mixed
+     */
+    function find($id, User $user);
+
+    /**
      * Add note
      *
      * @param Note $note
@@ -32,9 +41,9 @@ interface NoteRepository {
      * Update note
      *
      * @param Note $note
-     * @return mixed
+     * @param User $user
      */
-    function update(Note $note);
+    function update(Note $note, User $user);
 
     /**
      * Delete note

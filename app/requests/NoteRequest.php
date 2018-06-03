@@ -16,6 +16,7 @@ class NoteRequest extends ModelRequest {
     {
         $this->model = new Note();
 
+        $this->model->id = isset($_POST['id']) ? $_POST['id'] : "";
         $this->model->title = isset($_POST['title']) ? $_POST['title'] : '';
         $this->model->description = isset($_POST['description']) ? $_POST['description'] : '';
         $this->model->details = isset($_POST['details']) ? $_POST['details'] : '';

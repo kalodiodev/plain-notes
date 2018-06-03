@@ -82,6 +82,58 @@ class NotesController {
     }
 
     /**
+     * Edit Note
+     * 
+     * @return mixed|void
+     */
+    public function edit()
+    {
+        $this->require_auth();
+
+        if(! isset($_GET['id']))
+        {
+            return redirect('notes');
+        }
+
+        $note = $this->notesRepository->find($_GET['id'], auth());
+
+        if($note != null) {
+            return view('notes/edit', [
+                'note' => $note
+            ]);
+        }
+
+        return redirect('notes');
+    }
+
+    /**
+     * Update Note
+     */
+    public function update()
+    {
+        $this->require_auth();
+
+        $request = new NoteRequest();
+        $note = $request->input()->validate()->get();
+
+        if($request->hasErrors())
+        {
+            set_form_errors($request->errors());
+            $_SESSION['old_note'] = serialize($note);
+
+            return redirect('notes/edit?id=' . $note->id);
+        }
+
+        try{
+            $this->notesRepository->update($note, auth());
+        } catch (PDOException $ex ) {
+            error_message($this->exception_message($ex));
+        }
+
+        return redirect('notes');
+    }
+
+    /**
      * Delete Note
      */
     public function destroy()
