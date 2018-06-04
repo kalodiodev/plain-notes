@@ -53,4 +53,20 @@ interface NoteRepository {
      */
     function delete($id);
 
+    /**
+     * All user's notes paginated
+     *
+     * @param User $user
+     * @param $page
+     * @return mixed
+     */
+    function paginated(User $user, $page);
+
+    /**
+     * Count user's notes
+     *
+     * @param User $user
+     * @return mixed
+     */
+    function count(User $user);
 }

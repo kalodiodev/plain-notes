@@ -43,6 +43,8 @@
         <a class="btn btn-primary" href="/notes/create">Add New</a>
     </div>
 
+    <?php include __DIR__ . '/../partial/pagination.php'; ?>
+
     <?php require __DIR__ . '/../partial/footer.php'; ?>
 
     <?php

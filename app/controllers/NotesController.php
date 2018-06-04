@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use PDOException;
+use App\Core\Helper\Pager;
 use App\Request\NoteRequest;
 use App\Repository\NoteRepositoryImpl;
 
@@ -35,10 +36,18 @@ class NotesController {
     {
         $this->require_auth();
 
-        $notes = $this->notesRepository->all(auth());
+        global $config;
+
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+        $notesCount = $this->notesRepository->count(auth());
+        $pager = new Pager($page, $notesCount, $config['pagination_items_per_page']);
+
+        $notes = $this->notesRepository->paginated(auth(), $pager->page());
 
         return view('notes/index', [
-            'notes' => $notes
+            'notes' => $notes,
+            'pager' => $pager
         ]);
     }
 

@@ -122,4 +122,44 @@ class NoteRepositoryImpl implements NoteRepository
             ':id' => $id
         ]);
     }
+
+    /**
+     * All user's notes paginated
+     *
+     * @param User $user
+     * @param $page
+     * @return mixed
+     */
+    function paginated(User $user, $page)
+    {
+        global $config;
+
+        if($page == null) {
+            $page = 1;
+        }
+        
+        $limit = $config['pagination_items_per_page'];
+        $start = $page * $limit - $limit;
+        $stmt = $this->db->prepare(
+            "SELECT * FROM " . $this->table . " WHERE `user_id` = :user_id ORDER BY `created_on` DESC LIMIT $start, $limit");
+
+        $stmt->execute([
+            'user_id' => $user->id
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Note::class);
+    }
+
+    /**
+     * Count user's notes
+     *
+     * @param User $user
+     * @return mixed
+     */
+    function count(User $user)
+    {
+        $notes = $this->all($user);
+
+        return sizeOf($notes);
+    }
 }
