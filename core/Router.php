@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Core\Exception\PageNotFoundException;
 use Exception;
 
 class Router
@@ -53,8 +54,8 @@ class Router
                 ...explode('@', $this->routes[$requestType][$uri])
             );
         }
-
-        throw new Exception('No route defined for this URL');
+        
+        throw new PageNotFoundException('No route defined for this URL', 404);
     }
 
     /**

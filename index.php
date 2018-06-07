@@ -16,4 +16,6 @@ require './app/routes.php';
 
 $db = (new Database())->connect();
 
+require './core/handlers/exception_handler.php';
+
 $router->direct(Request::uri(), Request::method());
