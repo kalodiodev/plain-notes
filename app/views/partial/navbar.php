@@ -41,7 +41,7 @@
                         ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="<?php echo route('settings'); ?>">Settings</a>
                         <a class="dropdown-item" href="<?php echo route('logout'); ?>">Logout</a>
                     </div>
                 </li>

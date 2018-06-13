@@ -13,3 +13,4 @@ $router->post($config['url_prefix'] . 'notes', 'NotesController@store');
 $router->get($config['url_prefix'] . 'notes/delete', 'NotesController@destroy');
 $router->get($config['url_prefix'] . 'notes/edit', 'NotesController@edit');
 $router->post($config['url_prefix'] . 'notes/update', 'NotesController@update');
+$router->get($config['url_prefix'] . 'settings', 'SettingsController@index');
