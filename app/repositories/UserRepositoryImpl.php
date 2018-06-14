@@ -86,18 +86,42 @@ class UserRepositoryImpl implements UserRepository {
         $stmt->execute([
             ':email' => $email
         ]);
-        
-        return $stmt->fetchObject(User::class);
+
+        $row = $stmt->fetch();
+
+        $user = new User();
+        $user->id = $row['id'];
+        $user->firstName = $row['first_name'];
+        $user->lastName = $row['last_name'];
+        $user->email = $row['email'];
+        $user->password = $row['password'];
+
+        return $user;
     }
 
     /**
      * Update user
      *
      * @param User $user
+     * @return bool
      */
     function update(User $user)
     {
-        // TODO: Implement update() method.
+        $stmt = $this->db
+            ->prepare(
+                "UPDATE " . $this->table .
+                " SET " .
+                "`first_name` = :firstname ," .
+                "`last_name` = :lastname " .
+                "WHERE `id` = :id");
+
+        $stmt->bindValue(":firstname", $user->firstName);
+        $stmt->bindValue(":lastname", $user->lastName);
+        $stmt->bindValue(":id", $user->id);
+
+        $result = $stmt->execute();
+
+        return $result;
     }
 
     /**
