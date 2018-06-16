@@ -125,6 +125,28 @@ class UserRepositoryImpl implements UserRepository {
     }
 
     /**
+     * Update user password
+     *
+     * @param $user_id
+     * @param $password
+     * @return bool|mixed
+     */
+    function update_password($user_id, $password)
+    {
+        $stmt = $this->db
+            ->prepare(
+                "UPDATE " . $this->table .
+                " SET " .
+                "`password` = :password " .
+                "WHERE `id` = :id ");
+
+        return $stmt->execute([
+            ':id' => $user_id,
+            ':password' => Encrypt::encrypt($password)
+        ]);
+    }
+
+    /**
      * Delete User
      *
      * @param User $user

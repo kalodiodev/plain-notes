@@ -49,6 +49,15 @@ interface UserRepository {
     function update(User $user);
 
     /**
+     * Update user password
+     *
+     * @param $user_id
+     * @param $password
+     * @return mixed
+     */
+    function update_password($user_id, $password);
+
+    /**
      * Delete User
      *
      * @param User $user

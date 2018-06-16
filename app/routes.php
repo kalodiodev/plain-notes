@@ -15,3 +15,4 @@ $router->get($config['url_prefix'] . 'notes/edit', 'NotesController@edit');
 $router->post($config['url_prefix'] . 'notes/update', 'NotesController@update');
 $router->get($config['url_prefix'] . 'settings', 'SettingsController@index');
 $router->post($config['url_prefix'] . 'user/info_update', 'UserController@info_update');
+$router->post($config['url_prefix'] . 'user/password_update', 'UserController@password_update');
