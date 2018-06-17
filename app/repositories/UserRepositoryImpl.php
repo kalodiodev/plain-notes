@@ -150,9 +150,15 @@ class UserRepositoryImpl implements UserRepository {
      * Delete User
      *
      * @param User $user
+     * @return bool
      */
     function delete(User $user)
     {
-        // TODO: Implement delete() method.
+        $smtp = $this->db->prepare("DELETE FROM $this->table WHERE `id` = :id");
+        $result = $smtp->execute([
+            'id' => $user->id
+        ]);
+
+        return $result;
     }
 }

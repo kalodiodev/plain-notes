@@ -60,6 +60,7 @@ require __DIR__ . '/../partial/head.php';
             <input class="btn btn-primary mb-2" type="submit" value="Submit">
         </form>
 
+        <hr>
 
         <h2 style="margin-top: 40px;">Update Password</h2>
         <form action="<?php echo route('user/password_update'); ?>" method="post">
@@ -77,15 +78,21 @@ require __DIR__ . '/../partial/head.php';
             </div>
 
             <div class="form-row">
-                <div class="col-md-12 mb-3"
-                <label for="passwordConfirm">Password Confirm</label>
-                <input type="password" id="passwordConfirm" class="form-control" name="password_confirmation">
+                <div class="col-md-12 mb-3">
+                    <label for="passwordConfirm">Password Confirm</label>
+                    <input type="password" id="passwordConfirm" class="form-control" name="password_confirmation">
+                </div>
             </div>
-
 
             <input class="btn btn-primary mb-2" type="submit" value="Submit">
         </form>
 
+        <hr>
+
+        <h2 style="margin-top: 40px;">Delete Account</h2>
+        <form action="<?php echo route('user/delete_account'); ?>" method="post">
+            <input class="btn btn-danger mb-2" type="submit" value="Delete" name="delete_account">
+        </form>
 
         <?php
         /*

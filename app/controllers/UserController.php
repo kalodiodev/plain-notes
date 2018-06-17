@@ -81,5 +81,23 @@ class UserController {
 
         return redirect('settings');
     }
+
+    /**
+     * Delete User Account
+     */
+    public function delete_account()
+    {
+        $this->require_auth();
+
+        if(isset($_POST['delete_account']))
+        {
+            $this->usersRepository->delete(auth());
+            signOut();
+
+            return redirect('');
+        }
+
+        return redirect('settings');
+    }
     
 }
