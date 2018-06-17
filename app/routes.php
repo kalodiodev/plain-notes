@@ -17,3 +17,4 @@ $router->get($config['url_prefix'] . 'settings', 'SettingsController@index');
 $router->post($config['url_prefix'] . 'user/info_update', 'UserController@info_update');
 $router->post($config['url_prefix'] . 'user/password_update', 'UserController@password_update');
 $router->post($config['url_prefix'] . 'user/delete_account', 'UserController@delete_account');
+$router->get($config['url_prefix'] . 'admin/users', 'AdminUserController@index');

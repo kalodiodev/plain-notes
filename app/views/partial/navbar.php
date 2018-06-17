@@ -14,6 +14,12 @@
                 <li class="nav-item <?php echo $_SERVER['REQUEST_URI'] === route('notes') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?php echo route('notes'); ?>">Notes</a>
                 </li>
+
+                <?php if(auth()->isAdmin()): ?>
+                    <li class="nav-item <?php echo $_SERVER['REQUEST_URI'] === route('admin/users') ? 'active' : ''; ?>">
+                        <a class="nav-link" href="<?php echo route('admin/users'); ?>">Users</a>
+                    </li>
+                <?php endif; ?>
             <?php endif; ?>
         </ul>
 

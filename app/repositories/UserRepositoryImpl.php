@@ -29,10 +29,23 @@ class UserRepositoryImpl implements UserRepository {
      */
     function all()
     {
+        $users = [];
+
         $stmt = $this->db->prepare("SELECT * FROM " . $this->table);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS, User::class);
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+        {
+            $user = new User();
+            $user->id = $row['id'];
+            $user->firstName = $row['first_name'];
+            $user->lastName = $row['last_name'];
+            $user->email = $row['email'];
+
+            $users[] = $user;
+        }
+
+        return $users;
     }
 
     /**
