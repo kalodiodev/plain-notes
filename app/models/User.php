@@ -72,6 +72,7 @@ class User extends Model implements Serializable {
     public $email;
     public $password;
     public $password_confirmation;
+    public $admin = false;
 
     /**
      * String representation of User object
@@ -84,7 +85,8 @@ class User extends Model implements Serializable {
             'id' => $this->id,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
-            'email' => $this->email
+            'email' => $this->email,
+            'admin' => $this->admin
         ]);
     }
 
@@ -101,5 +103,16 @@ class User extends Model implements Serializable {
         $this->firstName = $data['firstName'];
         $this->lastName = $data['lastName'];
         $this->email = $data['email'];
+        $this->admin = $data['admin'];
+    }
+
+    /**
+     * Is user administrator
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->admin;
     }
 }

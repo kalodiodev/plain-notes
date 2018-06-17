@@ -95,6 +95,7 @@ class UserRepositoryImpl implements UserRepository {
         $user->lastName = $row['last_name'];
         $user->email = $row['email'];
         $user->password = $row['password'];
+        $user->admin = $row['admin'];
 
         return $user;
     }
