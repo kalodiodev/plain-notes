@@ -12,5 +12,9 @@ return [
     'database_host' => 'localhost',
 
     // Pagination
-    'pagination_items_per_page' => 25
+    'pagination_items_per_page' => 25,
+
+    // Email
+    'email_name' => 'Plain Notes',
+    'email' => ''
 ];
