@@ -7,6 +7,7 @@ CREATE TABLE `plain-notes`.`users` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `admin` BOOLEAN DEFAULT FALSE,
+  `confirmation` VARCHAR(255),
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB CHARSET=utf8;

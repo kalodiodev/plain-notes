@@ -72,6 +72,7 @@ class User extends Model implements Serializable {
     public $email;
     public $password;
     public $password_confirmation;
+    public $confirmation;
     public $admin = false;
 
     /**
