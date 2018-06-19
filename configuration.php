@@ -16,5 +16,7 @@ return [
 
     // Email
     'email_name' => 'Plain Notes',
-    'email' => ''
+    'email' => '',
+
+    'confirm_url' => ''
 ];
