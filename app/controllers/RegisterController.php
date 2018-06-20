@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Core\Helper\TokenGenerator;
+use App\Model\User;
+use App\Services\ConfirmEmail;
 use PDOException;
 use App\Request\UserRequest;
 use App\Repository\UserRepositoryImpl;
@@ -34,6 +37,7 @@ class RegisterController {
      */
     public function store()
     {
+        /* @var $user User */
         $request = new UserRequest();
         $user = $request->input()->validate()->get();
 
@@ -45,7 +49,11 @@ class RegisterController {
             return redirect('register');
         }
 
+        $user->confirmation = TokenGenerator::generate();
+
         if($this->storeUser($user) == null) {
+            $this->sendConfirmationEmail($user);
+            
             return redirect('register');
         }
 
@@ -81,6 +89,21 @@ class RegisterController {
             error_message($this->exception_message($ex));
         }
         return $id;
+    }
+
+    /**
+     * Send Confirmation email
+     *
+     * @param $user
+     */
+    protected function sendConfirmationEmail(User $user)
+    {
+        global $config;
+        $email = new ConfirmEmail($config);
+
+        $email->send($user->email, [
+            'token' => $user->confirmation
+        ]);
     }
 
 }
