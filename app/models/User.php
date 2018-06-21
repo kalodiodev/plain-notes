@@ -116,4 +116,14 @@ class User extends Model implements Serializable {
     {
         return $this->admin;
     }
+
+    /**
+     * Is user's email confirmed
+     *
+     * @return bool
+     */
+    public function isConfirmed()
+    {
+        return empty($this->confirmation);
+    }
 }

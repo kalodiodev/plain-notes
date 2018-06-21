@@ -58,6 +58,12 @@ class LoginController {
         {
             if(Encrypt::verify($requestedUser->password, $user->password)) {
 
+                if(! $user->isConfirmed()) {
+                    error_message('Your email is not confirmed');
+
+                    return redirect('login');
+                }
+
                 authenticate($user);
 
                 return redirect('');
