@@ -102,15 +102,7 @@ class UserRepositoryImpl implements UserRepository {
 
         $row = $stmt->fetch();
 
-        $user = new User();
-        $user->id = $row['id'];
-        $user->firstName = $row['first_name'];
-        $user->lastName = $row['last_name'];
-        $user->email = $row['email'];
-        $user->password = $row['password'];
-        $user->admin = $row['admin'];
-
-        return $user;
+        return $this->rowToUser($row);
     }
 
     /**
@@ -172,6 +164,68 @@ class UserRepositoryImpl implements UserRepository {
         $result = $smtp->execute([
             'id' => $user->id
         ]);
+
+        return $result;
+    }
+
+    /**
+     * Find User by confirmation token
+     *
+     * @param $token
+     * @return mixed
+     */
+    public function findByConfirmationToken($token)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE `confirmation` LIKE :token");
+        $stmt->execute([
+            'token' => $token
+        ]);
+
+        $row = $stmt->fetch();
+
+        return $this->rowToUser($row);
+    }
+
+    /**
+     * Row to User
+     *
+     * @param $row
+     * @return User
+     */
+    private function rowToUser($row)
+    {
+        $user = new User();
+        $user->id = $row['id'];
+        $user->firstName = $row['first_name'];
+        $user->lastName = $row['last_name'];
+        $user->email = $row['email'];
+        $user->password = $row['password'];
+        $user->admin = $row['admin'];
+        $user->confirmation = $row['confirmation'];
+
+        return $user;
+    }
+
+    /**
+     * Update user's confirmation
+     *
+     * @param $user
+     * @param $confirmation
+     * @return mixed
+     */
+    function update_confirmation($user, $confirmation)
+    {
+        $stmt = $this->db
+            ->prepare(
+                "UPDATE " . $this->table .
+                " SET " .
+                "`confirmation` = :confirmation " .
+                "WHERE `id` = :id");
+
+        $stmt->bindValue(":confirmation", $confirmation);
+        $stmt->bindValue(":id", $user->id);
+
+        $result = $stmt->execute();
 
         return $result;
     }

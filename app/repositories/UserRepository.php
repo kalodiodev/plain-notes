@@ -63,4 +63,21 @@ interface UserRepository {
      * @param User $user
      */
     function delete(User $user);
+
+    /**
+     * Find User by confirmation token
+     *
+     * @param $token
+     * @return mixed
+     */
+    function findByConfirmationToken($token);
+
+    /**
+     * Update user's confirmation
+     *
+     * @param $user
+     * @param $confirmation
+     * @return mixed
+     */
+    function update_confirmation($user, $confirmation);
 }

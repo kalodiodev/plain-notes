@@ -53,7 +53,7 @@ class RegisterController {
 
         if($this->storeUser($user) == null) {
             $this->sendConfirmationEmail($user);
-            
+
             return redirect('register');
         }
 
@@ -104,6 +104,28 @@ class RegisterController {
         $email->send($user->email, [
             'token' => $user->confirmation
         ]);
+    }
+
+    /**
+     * Confirm user email
+     */
+    protected function confirm()
+    {
+        $token = isset($_GET['token']) ? $_GET['token'] : null;
+
+        if($token == null || empty($token)) {
+            return redirect('');
+        }
+
+        if($user = $this->userRepository->findByConfirmationToken($token)) {
+
+            $this->userRepository->update_confirmation($user, "");
+            authenticate($user);
+
+            return redirect('');
+        }
+
+        return redirect('');
     }
 
 }
