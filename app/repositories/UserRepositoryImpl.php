@@ -59,14 +59,15 @@ class UserRepositoryImpl implements UserRepository {
         $stmt = $this->db
             ->prepare(
                 "INSERT INTO " . $this->table .
-                " ( `first_name`, `last_name`, `email`, `password` ) " .
-                "VALUES (:firstname , :lastname , :email, :password)");
+                " ( `first_name`, `last_name`, `email`, `password`, `confirmation` ) " .
+                "VALUES (:firstname , :lastname , :email, :password, :confirmation)");
 
         $result = $stmt->execute([
             ':firstname' => $user->firstName,
             ':lastname' => $user->lastName,
             ':email' => $user->email,
-            ':password' => Encrypt::encrypt($user->password)
+            ':password' => Encrypt::encrypt($user->password),
+            ':confirmation' => $user->confirmation
         ]);
 
         if($result) {
