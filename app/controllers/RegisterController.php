@@ -52,10 +52,10 @@ class RegisterController {
         $user->confirmation = TokenGenerator::generate();
 
         if($this->storeUser($user) == null) {
-            $this->sendConfirmationEmail($user);
-
             return redirect('register');
         }
+
+        $this->sendConfirmationEmail($user);
 
         return redirect('');
     }
