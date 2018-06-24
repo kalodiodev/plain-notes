@@ -182,9 +182,11 @@ class UserRepositoryImpl implements UserRepository {
             'token' => $token
         ]);
 
-        $row = $stmt->fetch();
+        if($row = $stmt->fetch()) {
+            return $this->rowToUser($row);
+        }
 
-        return $this->rowToUser($row);
+        return null;
     }
 
     /**
