@@ -109,8 +109,13 @@ class RegisterController {
     /**
      * Confirm user email
      */
-    protected function confirm()
+    public function confirm()
     {
+        if($this->resend_confirmation_email()) {
+
+            return redirect('login');
+        }
+        
         $token = isset($_GET['token']) ? $_GET['token'] : null;
 
         if($token == null || empty($token)) {
@@ -126,6 +131,26 @@ class RegisterController {
         }
 
         return redirect('');
+    }
+
+    /**
+     * Resend confirmation email
+     *
+     * @return bool if request requires resend, otherwise false
+     */
+    protected function resend_confirmation_email()
+    {
+        if(isset($_GET['resend'])) {
+            $user = $this->userRepository->getByEmail($_GET['resend']);
+
+            if ($user != null) {
+                $this->sendConfirmationEmail($user);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
 }

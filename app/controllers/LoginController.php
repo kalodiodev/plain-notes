@@ -59,7 +59,9 @@ class LoginController {
             if(Encrypt::verify($requestedUser->password, $user->password)) {
 
                 if(! $user->isConfirmed()) {
-                    error_message('Your email is not confirmed');
+                    error_message("Your email is not confirmed, " .
+                        "click <a href=\"/confirm?resend=$user->email\">here</a> " .
+                        "to resend your confirmation email");
 
                     return redirect('login');
                 }
