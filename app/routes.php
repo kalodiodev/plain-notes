@@ -19,3 +19,4 @@ $router->post($config['url_prefix'] . 'user/password_update', 'UserController@pa
 $router->post($config['url_prefix'] . 'user/delete_account', 'UserController@delete_account');
 $router->get($config['url_prefix'] . 'admin/users', 'AdminUserController@index');
 $router->get($config['url_prefix'] . 'confirm', 'RegisterController@confirm');
+$router->get($config['url_prefix'] . 'forgot-password', 'ForgotPassword@index');
