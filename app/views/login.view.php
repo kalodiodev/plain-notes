@@ -42,6 +42,10 @@ require 'partial/head.php';
             </div>
         </div>
 
+        <div class="text-right">
+            <a href="<?php echo route('forgot-password'); ?>">Forgot password?</a>
+        </div>
+
         <input class="btn btn-primary mb-2" type="submit" value="Login">
     </form>
 </div>
