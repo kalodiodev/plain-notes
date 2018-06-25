@@ -14,7 +14,7 @@ require 'partial/head.php';
         <h1>Reset Password</h1>
         <hr>
 
-        <form action="<?php echo route('reset-password'); ?>" method="post">
+        <form action="<?php echo route('forgot-password'); ?>" method="post">
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <label for="email">Email</label>
