@@ -205,6 +205,8 @@ class UserRepositoryImpl implements UserRepository {
         $user->password = $row['password'];
         $user->admin = $row['admin'];
         $user->confirmation = $row['confirmation'];
+        $user->forgot_password = $row['forgot_password'];
+        $user->forgot_password_expires = $row['forgot_password_expires'];
 
         return $user;
     }
@@ -258,5 +260,30 @@ class UserRepositoryImpl implements UserRepository {
         $result = $stmt->execute();
 
         return $result;
+    }
+
+    /**
+     * Find by email and password reset token
+     *
+     * @param $email
+     * @param $token
+     * @return mixed
+     */
+    function findByEmailAndResetPasswordToken($email, $token)
+    {
+        $query = "SELECT * FROM " . $this->table .
+            " WHERE `email` LIKE :email AND `forgot_password` LIKE :token ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([
+            'email' => $email,
+            'token' => $token
+        ]);
+
+        if($row = $stmt->fetch()) {
+            return $this->rowToUser($row);
+        }
+
+        return null;
     }
 }

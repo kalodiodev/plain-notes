@@ -90,4 +90,13 @@ interface UserRepository {
      * @return mixed
      */
     function update_forgot_password($user, $token, $expires);
+
+    /**
+     * Find by email and password reset token
+     *
+     * @param $email
+     * @param $token
+     * @return mixed
+     */
+    function findByEmailAndResetPasswordToken($email, $token);
 }
