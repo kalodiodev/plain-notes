@@ -80,4 +80,14 @@ interface UserRepository {
      * @return mixed
      */
     function update_confirmation($user, $confirmation);
+
+    /**
+     * Update user's forgot password token
+     *
+     * @param $user
+     * @param $token
+     * @param $expires
+     * @return mixed
+     */
+    function update_forgot_password($user, $token, $expires);
 }

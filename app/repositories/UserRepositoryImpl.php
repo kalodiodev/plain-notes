@@ -232,4 +232,31 @@ class UserRepositoryImpl implements UserRepository {
 
         return $result;
     }
+
+    /**
+     * Update user's forgot password token
+     *
+     * @param $user
+     * @param $token
+     * @param $expires
+     * @return mixed
+     */
+    function update_forgot_password($user, $token, $expires)
+    {
+        $stmt = $this->db
+            ->prepare(
+                "UPDATE " . $this->table .
+                " SET " .
+                "`forgot_password` = :token, " .
+                "`forgot_password_expires` = :expires " .
+                "WHERE `id` = :id");
+
+        $stmt->bindValue(":token", $token);
+        $stmt->bindValue(":expires", $expires);
+        $stmt->bindValue(":id", $user->id);
+
+        $result = $stmt->execute();
+
+        return $result;
+    }
 }
