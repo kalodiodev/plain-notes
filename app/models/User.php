@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+
 use App\Core\Model;
 use Serializable;
 
@@ -73,6 +74,8 @@ class User extends Model implements Serializable {
     public $password;
     public $password_confirmation;
     public $confirmation;
+    public $forgot_password;
+    public $forgot_password_expires;
     public $admin = false;
 
     /**
