@@ -21,3 +21,4 @@ $router->get($config['url_prefix'] . 'admin/users', 'AdminUserController@index')
 $router->get($config['url_prefix'] . 'confirm', 'RegisterController@confirm');
 $router->get($config['url_prefix'] . 'forgot-password', 'ForgotPasswordController@index');
 $router->post($config['url_prefix'] . 'forgot-password', 'ForgotPasswordController@sendToken');
+$router->get($config['url_prefix'] . 'reset-password', 'ForgotPasswordController@resetForm');
