@@ -22,3 +22,4 @@ $router->get($config['url_prefix'] . 'confirm', 'RegisterController@confirm');
 $router->get($config['url_prefix'] . 'forgot-password', 'ForgotPasswordController@index');
 $router->post($config['url_prefix'] . 'forgot-password', 'ForgotPasswordController@sendToken');
 $router->get($config['url_prefix'] . 'reset-password', 'ForgotPasswordController@resetForm');
+$router->post($config['url_prefix'] . 'reset-password', 'ForgotPasswordController@resetPassword');
