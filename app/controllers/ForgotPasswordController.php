@@ -6,6 +6,7 @@ use App\Core\Helper\TokenGenerator;
 use App\Model\User;
 use App\Repository\UserRepositoryImpl;
 use App\Request\ForgotPasswordRequest;
+use App\Request\ResetPasswordRequest;
 use App\Services\ForgotPasswordEmail;
 
 /**
@@ -101,6 +102,42 @@ class ForgotPasswordController
                 'email' => $user->email,
                 'token' => $user->forgot_password
             ]);
+        }
+
+        return redirect('');
+    }
+
+    /**
+     * Reset Password
+     */
+    public function resetPassword()
+    {
+        if(isAuthenticated()) {
+            return redirect('');
+        }
+
+        $request = new ResetPasswordRequest();
+        /** @var User $requestOfUser */
+        $requestOfUser = $request->input()->validate()->get();
+
+        if((empty($requestOfUser->email)) || (empty($requestOfUser->forgot_password))) {
+            return redirect('');
+        }
+
+        // Check for validation errors
+        if($request->hasErrors())
+        {
+            set_form_errors($request->errors());
+
+            return redirect('reset-password');
+        }
+
+        if($user = $this->usersRepository->findByEmailAndResetPasswordToken($requestOfUser->email, $requestOfUser->forgot_password)) {
+            $this->usersRepository->update_password($user->id, $requestOfUser->password);
+
+            authenticate($user);
+
+            return redirect('');
         }
 
         return redirect('');
