@@ -21,7 +21,7 @@ class ForgotPasswordEmail extends Email
     {
         global $config;
 
-        $href = $config['reset_password'] . '?token=' . $data['token'];
+        $href = $config['reset_password'] . '?email=' . $data['email'] . '&token=' . $data['token'];
 
         $message = <<<EOD
         <!doctype html>

@@ -66,6 +66,7 @@ class ForgotPasswordController
             global $config;
             $email = new ForgotPasswordEmail($config);
             $email->send($user->email, [
+                'email' => $user->email,
                 'token' => $token
             ]);
         }
