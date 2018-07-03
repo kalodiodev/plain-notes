@@ -18,5 +18,6 @@ return [
     'email_name' => 'Plain Notes',
     'email' => '',
 
-    'confirm_url' => '' // ex: https://www.example.com/confirm
+    'confirm_url' => '', // ex: https://www.example.com/confirm
+    'reset_password_url' => '', // ex: https://www.example.com/reset-password
 ];
