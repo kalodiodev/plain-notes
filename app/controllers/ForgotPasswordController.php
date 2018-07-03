@@ -59,7 +59,7 @@ class ForgotPasswordController
         if(($requestedUser instanceof User) && ($user = $this->usersRepository->getByEmail($requestedUser->email))) {
 
             $token = TokenGenerator::generate();
-            $expires = (new \DateTime())->add(new \DateInterval("P1D"));
+            $expires = (new \DateTime())->add(new \DateInterval("P1D"))->format('Y-m-d H:i:s');
             
             $this->usersRepository->update_forgot_password($user, $token, $expires);
 
@@ -99,7 +99,7 @@ class ForgotPasswordController
                 return redirect('');
             }
 
-            return view('reset_password', [
+            return view('reset-password', [
                 'email' => $user->email,
                 'token' => $user->forgot_password
             ]);
