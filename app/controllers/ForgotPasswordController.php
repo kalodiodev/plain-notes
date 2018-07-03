@@ -134,7 +134,12 @@ class ForgotPasswordController
         }
 
         if($user = $this->usersRepository->findByEmailAndResetPasswordToken($requestOfUser->email, $requestOfUser->forgot_password)) {
+
+            // Update password
             $this->usersRepository->update_password($user->id, $requestOfUser->password);
+
+            // Clear forgot password token
+            $this->usersRepository->update_forgot_password($user, null, null);
 
             authenticate($user);
 
