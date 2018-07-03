@@ -15,7 +15,7 @@ require 'partial/head.php';
     <hr>
 
     <form action="<?php echo route('reset-password'); ?>" method="post">
-        < class="form-row">
+        <div class="form-row">
             <input type="hidden" name="email" value="<?php echo $email; ?>">
             <input type="hidden" name="token" value="<?php echo $token; ?>">
 
