@@ -78,14 +78,21 @@ class UserRepositoryImpl implements UserRepository {
     }
 
     /**
-     * Get user by ID
+     * Find User by Id
      *
-     * @param $id
-     * @return User
+     * @param $id user id
+     * @return User $user
      */
-    function get($id)
+    function findById($id)
     {
-        // TODO: Implement get() method.
+        $stmt = $this->db->prepare("SELECT * FROM " . $this->table . " WHERE `id` = :id");
+        $stmt->execute([
+            'id' => $id
+        ]);
+
+        $row = $stmt->fetch();
+
+        return $this->rowToUser($row);
     }
 
     /**

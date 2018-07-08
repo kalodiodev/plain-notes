@@ -26,12 +26,12 @@ interface UserRepository {
     function save(User $user);
 
     /**
-     * Get user by ID
+     * Find User by Id
      *
-     * @param $id
-     * @return User
+     * @param $id user id
+     * @return User $user
      */
-    function get($id);
+    function findById($id);
 
     /**
      * Get user by Email
