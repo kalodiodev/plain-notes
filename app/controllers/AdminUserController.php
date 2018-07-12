@@ -39,4 +39,22 @@ class AdminUserController
 
         return view('admin/users', ['users' => $users]);
     }
+
+    /**
+     * Edit User
+     */
+    public function edit()
+    {
+        $this->require_auth();
+
+        if(! auth()->isAdmin()) {
+            return redirect('');
+        }
+
+        if(isset($_GET['id']) && ($user = $this->usersRepository->findById($_GET['id']))) {
+            return view('admin/user-edit', ['user' => $user]);
+        }
+
+        return redirect('admin/users');
+    }
 }
