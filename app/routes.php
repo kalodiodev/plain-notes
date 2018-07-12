@@ -18,6 +18,7 @@ $router->post($config['url_prefix'] . 'user/info_update', 'UserController@info_u
 $router->post($config['url_prefix'] . 'user/password_update', 'UserController@password_update');
 $router->post($config['url_prefix'] . 'user/delete_account', 'UserController@delete_account');
 $router->get($config['url_prefix'] . 'admin/users', 'AdminUserController@index');
+$router->get($config['url_prefix'] . 'admin/user/edit', 'AdminUserController@edit');
 $router->get($config['url_prefix'] . 'confirm', 'RegisterController@confirm');
 $router->get($config['url_prefix'] . 'forgot-password', 'ForgotPasswordController@index');
 $router->post($config['url_prefix'] . 'forgot-password', 'ForgotPasswordController@sendToken');
