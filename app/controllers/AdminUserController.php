@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Repository\UserRepositoryImpl;
+use App\Request\AdminUserUpdateRequest;
 
 /**
  * User Controller
@@ -56,5 +57,62 @@ class AdminUserController
         }
 
         return redirect('admin/users');
+    }
+
+    /**
+     * Update User
+     */
+    public function update()
+    {
+        $this->require_auth();
+
+        if(! auth()->isAdmin()) {
+            return redirect('');
+        }
+        
+        $request = new AdminUserUpdateRequest();
+        $requestedUser = $request->input()->validate()->get();
+
+        if($request->hasErrors()) {
+            return $this->handleUpdateUserFormErrors($requestedUser, $request);
+        }
+
+        $this->updateUser($requestedUser);
+
+        return redirect('admin/users');
+    }
+
+    /**
+     * Handle User Update Form errors
+     *
+     * @param $requestedUser
+     * @param AdminUserUpdateRequest $request
+     */
+    protected function handleUpdateUserFormErrors($requestedUser, AdminUserUpdateRequest $request)
+    {
+        if (isset($requestedUser->id)) {
+            set_form_errors($request->errors());
+            $_SESSION['old_user'] = serialize($requestedUser);
+
+            return redirect('admin/user/edit?id=' . $requestedUser->id);
+        }
+
+        return redirect('admin/users');
+    }
+
+    /**
+     * Update User
+     *
+     * @param $requestedUser
+     */
+    protected function updateUser($requestedUser)
+    {
+        if(isset($requestedUser->id) && ($user = $this->usersRepository->findById($requestedUser->id))) {
+
+            $user->firstName = $requestedUser->firstName;
+            $user->lastName = $requestedUser->lastName;
+
+            $this->usersRepository->update($user);
+        }
     }
 }
